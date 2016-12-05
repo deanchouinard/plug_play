@@ -1,7 +1,12 @@
 defmodule Example.Plug.Router do
   use Plug.Router
 
+  alias Example.Plug.VerifyRequest
+
   plug HelloWorldPlug, paths: ["/hello"]
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+  plug VerifyRequest, fields: ["content", "mimetype"],
+                      paths: ["/upload"]
 
   plug :match
   plug :dispatch
@@ -9,6 +14,7 @@ defmodule Example.Plug.Router do
   get "/", do: send_resp(conn, 200, "Welcome")
   # get "/hello", do: send_resp(conn, 200, "hello")
   get "/hello", do: conn
+  post "/upload", do: send_resp(conn, 201, "Uploaded")
   match _, do: send_resp(conn, 404, "Oops!")
 
 end
