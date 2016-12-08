@@ -7,6 +7,8 @@ defmodule Helloplug do
   def call(conn, _opts) do
     IO.puts "saying hello!"
     IO.puts "saying hello!2"
-    Plug.Conn.send_resp(conn, 200, "Hello, world!")
+    conn
+    |> Plug.Conn.put_resp_content_type("text/plain")
+    |> Plug.Conn.send_resp(200, "Hello, world!")
   end
 end

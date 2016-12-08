@@ -6,6 +6,7 @@ defmodule LearningPlug do
   end
 
   def call(%Plug.Conn{request_path: "/" <> name} = conn, opts) do
+    IO.puts "LearningPlug:call"
     send_resp(conn, 200, "#{opts[:my_option]}, #{name}")
   end
 
