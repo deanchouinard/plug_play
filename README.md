@@ -6,20 +6,18 @@ examples, tutorials, or blog posts I found.
 [Plug](https://hexdocs.pm/plug/readme.html)
 
 example
-: [Elixir School - Plug] 
-(https://elixirschool.com/lessons/specifics/plug/)
+
+:    [Elixir School - Plug](https://elixirschool.com/lessons/specifics/plug/)
 
 learning_plug
-: [Getting Started with Plug in Elixir]
+:    [Getting Started with Plug in Elixir]
 (http://www.brianstorti.com/getting-started-with-plug-elixir/)
 
 helloplug
-: [Building a Web Framework From Scratch in Elixir (https://codewords.recurse.com/issues/five/building-a-web-framework-from-scratch-in-elixir)
+:    [Building a Web Framework From Scratch in Elixir](https://codewords.recurse.com/issues/five/building-a-web-framework-from-scratch-in-elixir)
 
 
 I then the read the blog post by Brujo Benavides, [How Do I Test]
 (https://medium.com/erlang-battleground/how-do-i-test-a9658a83c392#.yu1q10q6w)
-
-
 and started adding tests to document how the code worked.
 
