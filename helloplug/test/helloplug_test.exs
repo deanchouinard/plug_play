@@ -30,7 +30,8 @@ defmodule HelloplugTest do
 
     assert conn.state == :sent
     assert conn.status == 200
-    assert conn.resp_body == "You requested user number 6"
+    #assert conn.resp_body == "You requested user number 6"
+    assert conn.resp_body =~ "User Information Page"
 
   end
 
@@ -50,7 +51,8 @@ defmodule HelloplugTest do
 
     assert conn.state == :sent
     assert conn.status == 200
-    assert conn.resp_body == "You requested user number 6"
+    assert conn.resp_body =~ "User Information Page"
+    #assert conn.resp_body == "You requested user number 6"
 
   end
   
