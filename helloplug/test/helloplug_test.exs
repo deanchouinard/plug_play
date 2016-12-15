@@ -1,9 +1,21 @@
 defmodule HelloplugTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   use Plug.Test
 
   doctest Helloplug
-  
+
+  setup tags do
+    {:ok, _} = Helloplug.Repo.start_link
+    if tags[:user] do
+      user = %User{first_name: "Fluffums", last_name: "the Cat"}
+      user = Helloplug.Repo.insert!(user)
+      {:ok, user: user}
+    else
+      :ok
+    end
+
+  end
+
   test "root directory" do
     conn = conn(:get, "/")
     conn = Helloplug.call(conn, [])
@@ -24,14 +36,16 @@ defmodule HelloplugTest do
 
   end
 
-  test "user page" do
-    conn = conn(:get, "/users/6")
+  @tag :user
+  test "user page", %{user: user} do
+    conn = conn(:get, "/users/#{user.id}")
     conn = Helloplug.call(conn, [])
 
     assert conn.state == :sent
     assert conn.status == 200
     #assert conn.resp_body == "You requested user number 6"
-    assert conn.resp_body =~ "User Information Page"
+    #assert conn.resp_body =~ "User Information Page"
+    assert conn.resp_body =~ "Fluffums"
 
   end
 
@@ -45,13 +59,15 @@ defmodule HelloplugTest do
 
   end
 
-  test "WebsiteRouter user page" do
-    conn = conn(:get, "/users/6")
+  @tag :user
+  test "WebsiteRouter user page", %{user: user} do
+    conn = conn(:get, "/users/#{user.id}")
     conn = WebsiteRouter.call(conn, [])
 
     assert conn.state == :sent
     assert conn.status == 200
-    assert conn.resp_body =~ "User Information Page"
+    assert String.match?(conn.resp_body, ~r/Fluffums/)
+    # assert conn.resp_body =~ "User Information Page"
     #assert conn.resp_body == "You requested user number 6"
 
   end

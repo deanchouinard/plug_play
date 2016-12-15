@@ -30,13 +30,18 @@ defmodule Helloplug do
   
   require EEx
   EEx.function_from_file :defp, :template_show_user, "templates/show_user.eex",
-    [:user_id]
+    [:user]
   def route("GET", ["users", user_id], conn) do
+    case Helloplug.Repo.get(User, user_id) do
+      nil ->
+        conn |> Plug.Conn.send_resp(404, "User id not found")
+      user ->
 #    page_contents = EEx.eval_file("templates/show_user.eex", [user_id: user_id])
-    page_contents = template_show_user(user_id)
-    conn
-    |> Plug.Conn.put_resp_content_type("text/html")
-    |> Plug.Conn.send_resp(200, page_contents)
+        page_contents = template_show_user(user)
+        conn
+        |> Plug.Conn.put_resp_content_type("text/html")
+        |> Plug.Conn.send_resp(200, page_contents)
+    end
   end
   
   def route(_method, _path, conn) do
