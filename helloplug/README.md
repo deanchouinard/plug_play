@@ -1,24 +1,11 @@
 # Helloplug
 
-**TODO: Add description**
+As I went through this example and added enhancements, it was apparent I needed
+to convert it into a real app. Mostly because I needed to start the Repo.
 
-## Installation
+Also, while I generally like the Sqlite database, it was making things more
+complicated so I switched the database over to Postgres.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add `helloplug` to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:helloplug, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `helloplug` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:helloplug]]
-    end
-    ```
+I was helped by [Elixir School: Ecto](https://elixirschool.com/lessons/specifics/ecto/#supervisor)
+and Elixir in Action, Chapter 8, OTP Applications.
 

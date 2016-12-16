@@ -1,6 +1,5 @@
 defmodule Helloplug.Repo do
   use Ecto.Repo,
-  otp_app: :helloplug,
-  adapter: Sqlite.Ecto
+  otp_app: :helloplug
 end
 

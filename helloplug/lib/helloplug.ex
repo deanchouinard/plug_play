@@ -1,3 +1,20 @@
+defmodule Helloplug.App do
+  use Application
+
+  def start(_type, _args) do
+    import Supervisor.Spec
+
+    IO.puts "App.start*****************"
+    children = [
+      supervisor(Helloplug.Repo, [])
+    ]
+
+    opts = [strategy: :one_for_one, name: Helloplug.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+end
+
+  
 defmodule Router do
   defmacro __using__(_opts) do
     quote do

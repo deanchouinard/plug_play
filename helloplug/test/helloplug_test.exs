@@ -5,7 +5,6 @@ defmodule HelloplugTest do
   doctest Helloplug
 
   setup tags do
-    {:ok, _} = Helloplug.Repo.start_link
     if tags[:user] do
       user = %User{first_name: "Fluffums", last_name: "the Cat"}
       user = Helloplug.Repo.insert!(user)

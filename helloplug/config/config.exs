@@ -21,8 +21,11 @@ use Mix.Config
 #     config :logger, level: :info
 #
 config :helloplug, Helloplug.Repo,
-  adapter: Sqlite.Ecto,
-  database: "hello_plug.sqlite3"
+  adapter: Ecto.Adapters.Postgres,
+  database: "helloplug",
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost"
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
