@@ -1,5 +1,5 @@
 defmodule HelloplugTest do
-  use ExUnit.Case, async: false
+  use ExUnit.Case
   use Plug.Test
 
   doctest Helloplug

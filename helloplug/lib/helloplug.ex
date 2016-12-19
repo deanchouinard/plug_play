@@ -1,12 +1,20 @@
 defmodule Helloplug.App do
+  @moduledoc """
+  $ mix run --no-halt
+  $ curl localhost:4000/
+  $ curl localhost:4000/hello
+  $ curl localhost:4000/users/1
+
+  """
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec
 
-    IO.puts "App.start*****************"
+    #    IO.puts "App.start*****************"
     children = [
-      supervisor(Helloplug.Repo, [])
+      supervisor(Helloplug.Repo, []),
+      Plug.Adapters.Cowboy.child_spec(:http, Helloplug, [])
     ]
 
     opts = [strategy: :one_for_one, name: Helloplug.Supervisor]
@@ -19,7 +27,7 @@ defmodule Router do
   defmacro __using__(_opts) do
     quote do
       def init(default_opts) do
-        IO.puts "starting up Helloplug..."
+        #   IO.puts "starting up Helloplug..."
         default_opts
       end
 
