@@ -24,6 +24,10 @@ defmodule PluggerTest do
     assert conn.status == 401
   end
 
+  test "request" do
+    assert {200, _} = HTTPoison.get!  "http://localhost:4000/"
+  end
+
   test "the truth" do
     assert 1 + 1 == 2
   end

@@ -1,11 +1,15 @@
 defmodule Helloplug.App do
   @moduledoc """
+  Code from 
+[Building a Web Framework From Scratch in Elixir](https://codewords.recurse.com/issues/five/building-a-web-framework-from-scratch-in-elixir)
+
   $ mix run --no-halt
   $ curl localhost:4000/
   $ curl localhost:4000/hello
   $ curl localhost:4000/users/1
 
   """
+
   use Application
 
   def start(_type, _args) do
