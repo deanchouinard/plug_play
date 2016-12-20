@@ -24,9 +24,16 @@ defmodule PluggerTest do
     assert conn.status == 401
   end
 
-  test "request" do
-    assert {200, _} = HTTPoison.get!  "http://localhost:4000/"
+  test "request failure" do
+    assert %HTTPoison.Response{status_code: 401} = HTTPoison.get!  "http://localhost:4000/"
   end
+
+  test "request success" do
+    response = HTTPoison.get!  "http://localhost:4000/", [{"authorization", "token"}]
+
+    assert %HTTPoison.Response{status_code: 200} = response
+    assert %HTTPoison.Response{body: "Plug!"} = response
+   end
 
   test "the truth" do
     assert 1 + 1 == 2
